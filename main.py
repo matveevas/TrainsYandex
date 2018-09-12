@@ -35,6 +35,20 @@ with open('places.json', 'r') as f:
 print((distros_dict['countries'][2]).keys())
 print(((distros_dict['countries'])[1]['regions'][0]['settlements'][0]['stations'][0]).keys())
 print(type(distros_dict))
+print((distros_dict['countries'][160]))
+print(type(distros_dict['countries']))
+
+for i in distros_dict['countries']['title']:
+    if(i=='Россия'):
+        print(i)
+for i in distros_dict['countries']['title']:
+    print(distros_dict['countries']['title'][i])
+if (distros_dict['countries']['title']=='Россия'):
+    print(distros_dict['countries']['codes'])
+
+
+
+
 # for i in (distros_dict['countries']):
 #     print((distros_dict['countries'][i])['title'])
 # print(distros_dict)
