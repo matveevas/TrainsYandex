@@ -22,9 +22,10 @@ def sch_between_routes(api_key,api_url,to_code,from_code):
     payload = {'apikey': api_key,'from':from1, 'to': to,  'format': format}
     print(payload)
     r = requests.get(api_url, payload)
-    print(r)
+    # print(r)
     resp = r.json()
-    print(resp)
+    # print(resp)
+    return resp
 
 def req_station_codes():
     #request for station`s codes
@@ -73,9 +74,28 @@ codes_dict={}
 for i in codes:
     codes_dict[i[0]] = i[1]
 
-find_code(to_inp)
-find_code(from_inp)
+# find_code(to_inp)
+# find_code(from_inp)
 
-sch_between_routes(apikey, api_url_base, find_code(from_inp),find_code(to_inp))
+# sch_between_routes(apikey, api_url_base, find_code(from_inp),find_code(to_inp))
+l = list()
+lres = list()
+l.append(sch_between_routes(apikey, api_url_base, find_code(from_inp),find_code(to_inp)))
+print(l)
+res = dict()
+for i in l:
+    for sg in i['segments']:
+        #print(sg)
+        res['arrival']=sg['arrival']
+        res['departure']=sg['departure']
+        res['duration']=sg['duration']/60
+        res['title']=sg['thread'].get('short_title')
+        lres.append(res)
+print(lres)
 
+        # print(sg['arrival'], sg['departure'],sg['duration']/60)
+        # print(sg['thread'].get('short_title'))
+
+        # for th in sg['thread']:
+        #     print(th['short_title'])
 
